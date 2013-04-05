@@ -1,0 +1,241 @@
+Bitcoins and entropy
+Jonathan Moore, Eric Wustrow
+
+Last year, researchers [discovered](https://factorable.net) that some public keys used to secure online communications were not generated in a secure manner. They found that these public keys, used in HTTPS and SSH, were not being generated randomly, but rather generated from systems that had booted with the same random seed. Luckily, the vast majority of systems generating such vulnerable keys (known as weak keys) were embedded systems such as wireless modems. Still, these results were surprising to many, and served as a reminder of the importance of generating random numbers for use in cryptography. In this post, we look at how this work applies to Bitcoins, a type of decentralized digital currency.
+
+Generating random numbers is especially important when signing messages using DSA. In DSA, a signature contains a random nonce r, and the signature value. However, if the same r value is used to sign two different messages, it is possible to efficiently recover the private key. The researchers used this trick to recover the private host keys for several SSH servers running on embedded systems.
+
+However, SSH isn't the only system that uses DSA. Bitcoin is a type of decentralized digital currency that relies on ECDSA in order to make payments. Bitcoins are essentially attached to an ECDSA public key, until the owner uses the corresponding private key to sign them over to another public key. In order to keep track of who currently has the coins, these signed transactions are broadcast publicly, and stored in the Bitcoin block chain. Since the block chain is public, we can look at all the signatures for Bitcoin transactions, and see if anyone reused r values. If we find any such reuses, an attacker could recover the private key and steal those Bitcoins!
+
+So were there any repeated r values in the block chain? The answer is yes: at least 133 keys that have signed with repeated r values. We found 126 unique r values that appear across 316 transactions (out of approximately 11 million total Bitcoin transactions). However, there's no reason to panic about having your Bitcoins stolen --- all of the compromised keys have a balance of 0 BTC as of January 2, 2013. Furthermore, the aggregate of Bitcoins received across all keys is about 7 BTC. 
+
+
+To learn more about who was generating or using these vulnerable keys, we produced a directed graph of the transactions between these keys and other keys up to two degrees away. It can be viewed in SVG capable browsers [here](http://bitcoin-r.nfshost.com/ ). Red nodes correspond to vulnerable keys, while yellow and blue nodes correspond to nodes one or two degrees away respectively. Arrow size is proportional to the size of transfers between keys. The graph clearly shows five distinct sub graphs, meaning it is likely that there are no more than 5 related implementations that use or generate vulnerable signatures.
+
+Of the 133 keys, we can only verify the sorce of four of the addresses; all of which are associated with [Bitcoincard](http://bitcoincard.org ) and apear on [this page](http://bitcoincard.org/blog/?page=post&blog=bitcoincard_blog&post_id=sample_yransaction ).
+
+Even though we could only verify the source of these four keys, it is reasonable to assume that the problems we found are isolated to a small set of uncommon or under-development code and not a general problem with popular bitcoin implementations. This hypothesis is supported by the fact that the most common Bitcoin clients are based on OpenSSL or have otherwise been verified to use secure random number generators for their ECDSA signatures.
+
+To defend aginst this class of errors, it is important to use a cryptographically secure pseudorandom number generator (CSPRNG) which is seeded with enough entropy before being used to generate random r values. Alternatively, if waiting for a properly seeded CSPRNG is infeasible, (for example, on embedded systems that lack hardware random number generation sources), it is possible to use a [deterministic algorithm](http://tools.ietf.org/html/draft-pornin-deterministic-dsa-01#section-2.4 ) for generating the r value contained in the signature. This scheme combines the DSA private key and the message in a series of HMACs, such that the same message will always generate the same r value, but that it is very unlikely that two different messages will use the same r.
+
+While the number of keys and Bitcoins at risk due to entropy problems is small, it's possible that future Bitcoin implementations will make this type of mistake, and leave users vulnerable. Especially as Bitcoins are used more in embedded systems environments (such as in Bitcoincard), it is important to remember the necessity of entropy in this application.
+
+
+Notes and stats:
+
+There are many unusual patterens in the transactions related to comprimised keys such as this large number of outputs with 0BTC transfered:
+
+http://blockchain.info/tx/ceb1a7fb57ef8b75ac59b56dd859d5cb3ab5c31168aa55eb3819cd5ddbd3d806
+
+Or the two and from keys such as this one:
+
+http://blockchain.info/address/1ENrnLCxp9srcWCCE3kQFNqHRGDijespb9
+
+It is believed that the spending in on January second 2013 such as this one:
+
+http://blockchain.info/tx/593647fb4551def4674389273b51b71fe0c40ebce63ffb081ad6ca95f42e3066
+
+Was the result of one of the bitcoin-qt developers independently discovering the weak keys they have a write up here:
+
+http://www.nilsschneider.net/2013/01/28/recovering-bitcoin-private-keys.html
+
+Distrubution of r's and addresses:
+
+There were seven addresses which had a r which was only used once in
+their signatures but that was also used in some other addresses
+signatures:
+
+      1 1Q4VVTsx6vgYth7iD9WnAgHvAj239PMaoL
+      1 1NujNX3cvbikAZMnKtETgSd7kvw7o93MRg
+      1 1MmE9r9QTN2GnP1TF7JhZSKPsubuXguJkb
+      1 1K5XZhjCwbLYHwys86FvepaHt6tFiWb35T
+      1 1HRhPdTXhTDMTM8C9C3Y8FGD1EKszkPGv
+      1 1BH4hyBMH8NoiscwiPngP23fVNN8wpJwrT
+      1 1B2wqabcETtQxPuacB5whni7GUjDn1oQQX
+
+Additionally there were four addresses which had more than two
+signatures with repeated r values:
+
+      6 1rPAkJSXWgnLFEiCzv3APUFLsi8Kzv3pX
+      8 16mWzkk6iznyJQ3sKQRYxQ1Zr8xWpGMFWi
+      8 1A8TY7dxURcsRtPBs7fP6bDVzAgpgP4962
+     38 1BFhrfTTZP3Nw4BNy4eX4KFLsn9ZeijcMm
+
+All except for five r values were repeated only once. The values with
+more then two uses were:
+
+      3 0F18C2D1FE6513B90F44513E975E05CC498E7F5A565B46C65B1D448734392C6F
+      3 FB1299738DC025CA0E2FDC140879513458B2E6BDC03A692FEF4299DDFD359EF7
+      4 2B83D59C1D23C08EFD82EE0662FEC23309C3ADBCBD1F0B8695378DB4B14E7366
+      6 CABC3692F1F7BA75A8572DC5D270B35BCC00650534F6E5ECD6338E55355454D5
+     58 D47CE4C025C35EC440BC81D99834A624875161A26BF56EF7FDC0F5D52F843AD1
+
+The address distribution addresses with respect to thous keys is:
+
+  0F18C2D1FE6513B90F44513E975E05CC498E7F5A565B46C65B1D448734392C6F
+      1 1C8x2hqqgE2b3TZPQcFgas73xYWNh6TK9W
+      2 1A8TY7dxURcsRtPBs7fP6bDVzAgpgP4962
+
+  FB1299738DC025CA0E2FDC140879513458B2E6BDC03A692FEF4299DDFD359EF7
+      3 1A8TY7dxURcsRtPBs7fP6bDVzAgpgP4962
+
+  2B83D59C1D23C08EFD82EE0662FEC23309C3ADBCBD1F0B8695378DB4B14E7366
+      1 1A8TY7dxURcsRtPBs7fP6bDVzAgpgP4962
+      1 1NujNX3cvbikAZMnKtETgSd7kvw7o93MRg
+      2 1C8x2hqqgE2b3TZPQcFgas73xYWNh6TK9W
+
+  CABC3692F1F7BA75A8572DC5D270B35BCC00650534F6E5ECD6338E55355454D5
+      1 1BH4hyBMH8NoiscwiPngP23fVNN8wpJwrT
+      1 1HRhPdTXhTDMTM8C9C3Y8FGD1EKszkPGv
+      1 1MmE9r9QTN2GnP1TF7JhZSKPsubuXguJkb
+      3 1HXSnvNGK8oYQCyLDkpHNZ2sWPvFsYQcFU
+
+  D47CE4C025C35EC440BC81D99834A624875161A26BF56EF7FDC0F5D52F843AD1
+      1 1B2wqabcETtQxPuacB5whni7GUjDn1oQQX
+      1 1K5XZhjCwbLYHwys86FvepaHt6tFiWb35T
+      1 1Q4VVTsx6vgYth7iD9WnAgHvAj239PMaoL
+      4 1rPAkJSXWgnLFEiCzv3APUFLsi8Kzv3pX
+      5 1LfuyRkm9MrEXTz72hzpPsL46mzHEXfqWj
+      8 16mWzkk6iznyJQ3sKQRYxQ1Zr8xWpGMFWi
+     38 1BFhrfTTZP3Nw4BNy4eX4KFLsn9ZeijcMm
+
+There are no cases of a r that was used exactly twice but with
+different addresses.
+
+
+vulnerable addresses:
+
+121Zna8Dy9W2qDvsJEH2ALeHQkteXaeGng
+12a7gpjZDQBDhVSknfQzL3ygcASNQcocnd
+12c1XuVdjQwyftTbqnWMT94CYW6vKFknwm
+12CkZeZvwDwiTvFm5H8bABpEqQHXJ6gWc1
+12ekVy8duhBMLGd1JhxcgxrTN1fchmVcTo
+12RFNoJK2MSiWfXt3fFG7F4urUpLGnTBxh
+12WhvZTWMv9XLfyM2g7XFSUgpwzuQUX5Mq
+138VcLyoAb5sdjo3cDw7d14fUGLKRwQ9VK
+13CWujDi4g6DWB9bWDXT3TfRU635NPJdPF
+13ds2bCrxe68w8WD4R7bWSjGq4uK7XbzWH
+13fZF8aZcSjpxhukHkyVtHsLnPnVszQaLm
+13GXRxeyR9UTDQojZYv9NZ1j3VA6Butc9U
+13LRBbvgCSXsUs4JNmYhzHRo3re8vYVDid
+13oCG1VNMAGtNp9RcAmUieRf8NayAJ7xj7
+13x6i5itrvR8Rf75xP8PZaPtNTNxZLReLe
+143CugrdSngLmDaLWoLrWJzb4AU1xLMqoY
+1494Wwkf8QN4nC3gSYz3qjZVNuVZSHw2zi
+14FguDL7teNFCctazjUxCxCfZtssycq11h
+14ih1qxbcFmwLm8Hc7qTr3BhzdmWTWRmpC
+14reTqqg8r4qriHozsYoydugzLjYtpVoMZ
+14RJsWTjq9q2a9tNQSdpxbMaViWoXxRbjt
+154nELZtftuW951oQY7erHnN4L196c98Wp
+15E8CUjvHDVj8mBzhkNHErXtz4AeEHycpH
+15GieELLKTruUdzmTDVYP1TsjnzNRDg8Qa
+16He3EDsvTKYRSQGsZeoooTbYAjy9fiLoQ
+16mWzkk6iznyJQ3sKQRYxQ1Zr8xWpGMFWi
+16NCxA48LPKdSr5fACPnrLxgkrFnDJAzLp
+16SchApeKZEc86CVJCc1vLQ17TEJCRJNef
+16UkUnbqW8PXRrwgxRdb2UTivbgNnBYqwC
+17gDnz5TU8T16Pgzo93M7Dm1j5HS3UuS2Q
+17Lq1nrktyEFV3AVPAbsbDXWuWoUNMhws8
+17sDdDiW2dNRQvTu2NkwwCbfXNFxVCpbZW
+17Vjk88w6fy5YRVUGD6Aa9w545UA6K4tYZ
+18KZdcnGaqaXnHiRPb8rVGCztyA4jJPKtS
+18mmzMizs5CHtLJwchtPMuiYqVqWjw3rLe
+18pqzCLA17hdnzxFnf5Cad2feA1RHKtW2P
+18yDksipyvWEX14KTd4DHvj6ZDcXvNqtpB
+196SL6bZEvBT8A9z46df54zE3rzZfXzwe8
+19cRkXQfonjdJT9K8TMuDxV1PKLSdHZtPh
+19DcmnrhqpLgn8L6Exay1sJiKZPtYUAw1Y
+19yCy4mFWJVsdJbgtG79VwHGxQpcx4uhcr
+1A8TY7dxURcsRtPBs7fP6bDVzAgpgP4962
+1AgVauV4U1tt3KbRiehht56NoZeKprLUXe
+1ALsXt19tBxMr29WfM2Zd7EU8HwzooLGHx
+1AnFEpvs8a41T3ZpfPtXBENvkL5oatQ64D
+1AyTNQRvz6fo7EvebGpKfJB7jJeppxY4yc
+1B2wqabcETtQxPuacB5whni7GUjDn1oQQX
+1B8vhS5umMNKvwQFHJ3Hgres4NJeoe8U7Y
+1BFhrfTTZP3Nw4BNy4eX4KFLsn9ZeijcMm
+1BH4hyBMH8NoiscwiPngP23fVNN8wpJwrT
+1BRwmguCycCWSbueTcpn1vSJddMJXEhyjH
+1BvQyALiTSgKwVYzDL3ANoqmdWaoyRZazS
+1C3G6y8Cyi7ECDaaDhG34sLzrv1dd7Xo33
+1C8x2hqqgE2b3TZPQcFgas73xYWNh6TK9W
+1CFVxqxX3i9L9dm6Gw2QKJ2fH18HSJ9H8k
+1CNHzFKNCkCwYecVUfmahmqDFrn5uuRzsU
+1CozShbCQwFqa3iw2AUE3zn7Pp1f3HR3D
+1CqEdApNprZzgqUsuyLocXKH5yMdFTnTJQ
+1CRcBxVoXCqL7cEiq7b7rTYQyMhUrCu5Mf
+1CxZGXpNLDmr7eDmgMiGc1n1gAyE6LKBig
+1DcNJeexQV2kM78AdMKSzmsQ8DeNMHLTJ1
+1Df8hDiS6RSeu9WDUqUtBpBmBoepzo24pD
+1Dka5AAYwdZkrPJZHjKmdZkaVATnwYeSqG
+1DQK1Xb1gKBRXLi4PEegWCZ1giELgBqhq7
+1DWhHeTnoZAFPehoM1W6S37hn7nVjZLrQN
+1DY5YvRxSwomrK7nELDZzAidQQ6ktjRR9A
+1E67dSKMyrEoqfAjSsE1SNpeeau4pmyc5j
+1E9ffsnXjMnZxmJaqCLXWhqWzKqx1sZXP9
+1ECvZ9ojebv5TVWySf2roXRP4XyQb5rNCy
+1EFET6LSLabV5KR55XqRzzhQ1rBUGTD1SQ
+1ENrnLCxp9srcWCCE3kQFNqHRGDijespb9
+1EUDdSvFGmZCa5zUXSXFSQD7r2qBZaSWJU
+1F48AGnDGLBbDr5Uk7DfUhrhe8U14eHKaH
+1F9tB2p9NWsGEt1TjiGAa3WEEGs9Wc779R
+1Fcj89eqk1xCe6PqkMpaUuWCaK7MUXeYbZ
+1FPgs8ZaxXUAp61jkd53U7zWj9NQq8yM34
+1FwbYs6UL2fzB9crvhWNCZyr9oqNjEXzcu
+1FX2xLHNxcT77bxLZXHzet6e8kMSS53uDK
+1FxWoGvwzjWGKk69vFumyoBaUCqzsndVck
+1FY4Ny2ZTvDGDHshB1Rpp5Di9x6Q9GVd5a
+1FYXLjfFJ1qsngiArLsrBVEGRaKkV15FGV
+1G3BjSLWsWH6tbPYs29fYMYaz9k8EStQM
+1G4TqNcKTRRuQ3brQSv85Fohf3jQiaGAbL
+1GjDS84eNBx6QQoo7dBddvgYArSttxLYdk
+1GUqD7UATGzbEBrMjweP5GCTQeU51TsZbj
+1GYRDPaCm3hrzUcgfT49w7mcvoQu2Y4MmX
+1GysfXJbf5FREeJetrwuANNZi8pcz4n1v6
+1HmJh2b8iS64WgX5snSzKYrNXqbnKkuBvE
+1HRhPdTXhTDMTM8C9C3Y8FGD1EKszkPGv
+1HWEyVbuyPmXfR9eBnrh4v2Npjnp9UJQCw
+1HWYEGYNgVc7bc28RCAa8mCJPv9eEnHieR
+1HXSnvNGK8oYQCyLDkpHNZ2sWPvFsYQcFU
+1J8THH46JdkjiGYLQyPQDHVk4gtftahDUx
+1JCMAUG9P8X4PHM7rF4ywDFHaAK2FMRrkN
+1JFMHv7ijwXDQYQrehhSxn6u9bTfkGCmK
+1JjcWuJDRNkw3XcMfE7khhRg1UCxU8eKua
+1JmMcWWy1mFuubbsBRPuVXdjFdtM2ENJXE
+1JNC3iaxA95NbWrSro5me2BM27wohuucKD
+1JNMvqdUYP9eDR3mEkxxCne4BYabc93Nwh
+1JnqZ6Djhncs9YHe74CbkLaXXAbA1phsTU
+1Js2D8Fj1AWQ2aB7TMtmJ6rn4bYDFtcjgF
+1JZ5NjZCDrnj84mZnv2fuAmAb7w4v5LiEu
+1K5CgovB1c4vX22MvUq8cfRsuctG86Jmx5
+1K5XZhjCwbLYHwys86FvepaHt6tFiWb35T
+1kJwZbv3dhUowPyRHcxJMknoJpPYfwaGf
+1kMEr9W4YeAnzFcuSWwj3ShYGANdLHSxG
+1L8DFt7yYA3iZsr6RA3d1mpf4J7TgBsYF
+1LfuyRkm9MrEXTz72hzpPsL46mzHEXfqWj
+1LKu5b7jUoM7MJzeuTCmvDWsJrBgBhcvhb
+1LnBTt9TYRMt4aABcDYSoaMQ9jV8Qgajkx
+1Lr9tUFz4mypFzc3PYitgGU1dTg21ubM9p
+1LspNcTjkzFQRrsr4iGGxD5RSKehB5fHnA
+1M5edBFjjFJhQhgSuCUQnX3uytcskgnqQB
+1Mjwi2LnE6oz3p8dNFXWgMpAPBs6ZpPPA2
+1MmE9r9QTN2GnP1TF7JhZSKPsubuXguJkb
+1N2aQiQ5LjNQ3C3cKCmHHnnq65RH3zRD9B
+1NCRgUAgJnzBGcLNX7iQD1d9Cn9ZyKF2PC
+1NEb41nDgxWwVzhHSsk4obURJ13KauJRsF
+1NSLj5xdCyRmMYVtM7bwZxZarYLm6EGZJf
+1NujNX3cvbikAZMnKtETgSd7kvw7o93MRg
+1NuSEboWF7YJ3bozo5H1JDpH5yc7zyHZm8
+1NvfCyqRh6cuh8dCQDJmboriifg1eaYDnV
+1Pbt1LGM2JNgMjtnEscEmntsSrcYofeaoa
+1Pde4CbEitkdPiwwKvd6s3znWw7EXZMYjD
+1PUv3XNWWCDmEK6o9VerPK81qVfo4Wtvv2
+1PWTFonhiXCdTZ4Nd2J726rqWnNsTVeVMY
+1PXU5aD3fzgAm2E56o2VSaHpVe4bhe3d2m
+1Q4VVTsx6vgYth7iD9WnAgHvAj239PMaoL
+1rPAkJSXWgnLFEiCzv3APUFLsi8Kzv3pX
+1szVke6ThJtfdUTi6Y5AAMDMePM4Ha8vK
+1yiQRuB3KRxZTrSHBNZK9NdjbyJskHiVs
+1YWwSaXTESKgDpitb6Rp8bteXzUR6hjDg
+1ZBRXLZEzSukVDEDDJjtHYmrpkEGH94nS
+
