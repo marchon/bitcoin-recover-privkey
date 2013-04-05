@@ -113,7 +113,7 @@ def show_params(params):
 			print "%s: %s" % (param,params[param])
 
 # This is the same as (a/b mod p) but avoiding floating numbers since we are dealing with prime numbers and modulus
-# and beacuse this the python built in division isn't suitable for our needs, 
+# and because this the python built in division isn't suitable for our needs, 
 # it returns floating point numbers rounded and we don't want them.
 def inverse_mult(a,b,p):
 	y =  (a * pow(b,p-2,p))  #(pow(a, b) modulo p) where p should be a prime number
