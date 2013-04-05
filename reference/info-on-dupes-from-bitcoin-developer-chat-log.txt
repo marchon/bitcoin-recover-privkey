@@ -1,0 +1,25 @@
+
+06:14	gmaxwell	https://people.xiph.org/~greg/dupr.html < here are addresses which were desinations used as txins in the transactions containing signatures with repeated R vales.
+06:14	gmaxwell	er values.
+06:15	gmaxwell	for the early bit of the chain I was looking at.
+06:15	gmaxwell	Interesting: https://bitcointalk.org/?topic=7584.0
+06:19	gmaxwell	Last Active: January 07, 2012, 02:34:56 AM
+06:20	gmaxwell	might be interesting if there were malware that patched your bitcoin to use a determinstic K.
+06:20	gmaxwell	Bet you could manage it with a single byte changed.
+06:21	tcatm	The public keys for two of his transactions are different, yet the same k is used. Bad rng?
+06:22	gmaxwell	I wouldn't think that was a general problem in the reference client considering how _few_ duplicates I'm seeing.
+06:23	tcatm	K could still be deterministic in some way.
+06:24	gmaxwell	I'm suspecting that he was doing something hacky and custom??? notices the comments below about non-standard scripts and such.
+06:24	gmaxwell	oh.. see also: https://bitcointalk.org/index.php?topic=35518.msg439736#msg439736
+06:28	tcatm	mkay, so that is solved.
+06:30	gmaxwell	sipa: another one of the people I contacted today about the non-standard transactions said they were using blockchain.info, with chrome, no pinning extensions or anything like that.
+06:30	gmaxwell	perhaps some kind of caching bug.
+06:33	gmaxwell	I'm up to 126 unique repeated Rs now.
+06:37	gmaxwell	none of them appear to be ascii, :(
+06:38	phantomcircuit	gmaxwell, where does bc.info get entropy from?
+06:47	gmaxwell	window.crypto.random.
+06:48	gmaxwell	Though ... I should note, that it's not especially picky and I expect in a sufficiently old browser (e.g. old IE) it could probably fail.
+06:48	gmaxwell	Though you'd also end up with insecure private keys.
+06:48	gmaxwell	IIRC I complained about this before so perhaps they changed in more recently
+
+
