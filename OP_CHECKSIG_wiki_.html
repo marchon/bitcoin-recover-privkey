@@ -1,0 +1,493 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+<head>
+<meta charset="UTF-8"/>
+<title>OP CHECKSIG - Bitcoin</title>
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE"/>
+<meta name="generator" content="MediaWiki 1.23.5"/>
+<link rel="shortcut icon" href="/favicon.ico"/>
+<link rel="search" type="application/opensearchdescription+xml" href="/w/opensearch_desc.php" title="Bitcoin (en)"/>
+<link rel="EditURI" type="application/rsd+xml" href="https://en.bitcoin.it/w/api.php?action=rsd"/>
+<link rel="copyright" href="http://creativecommons.org/licenses/by/3.0/"/>
+<link rel="alternate" type="application/atom+xml" title="Bitcoin Atom feed" href="/w/index.php?title=Special:RecentChanges&amp;feed=atom"/>
+<link rel="stylesheet" href="https://en.bitcoin.it/w/load.php?debug=false&amp;lang=en&amp;modules=ext.geshi.local%7Cmediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.skinning.interface%7Cmediawiki.ui.button%7Cskins.vector.styles&amp;only=styles&amp;skin=vector&amp;*"/>
+<meta name="ResourceLoaderDynamicStyles" content=""/>
+<link rel="stylesheet" href="https://en.bitcoin.it/w/load.php?debug=false&amp;lang=en&amp;modules=site&amp;only=styles&amp;skin=vector&amp;*"/>
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}</style>
+<script src="https://en.bitcoin.it/w/load.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if(window.mw){
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"OP_CHECKSIG","wgTitle":"OP CHECKSIG","wgCurRevisionId":49206,"wgRevisionId":49206,"wgArticleId":335,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Technical","Developer"],"wgBreakFrames":false,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"OP_CHECKSIG","wgIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgVectorEnabledModules":{"collapsiblenav":true,"collapsibletabs":true,"editwarning":true,"expandablesearch":false,"footercleanup":false,"sectioneditlinks":false,"simplesearch":true,"experiments":true},"wgWikiEditorEnabledModules":{"toolbar":true,"dialogs":true,"hidesig":true,"templateEditor":false,"templates":false,"preview":true,"previewDialog":false,"publish":false,"toc":false},"egMapsDebugJS":false});
+}</script><script>if(window.mw){
+mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"ccmeonemails":0,"cols":80,"date":"default","diffonly":0,"disablemail":0,"editfont":"default","editondblclick":0,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":1,"extendwatchlist":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"imagesize":2,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nickname":"","norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"rcdays":7,"rclimit":50,"rows":25,"showhiddencats":0,"shownumberswatching":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":1,"watchdefault":1,"watchdeletion":0,"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,
+"useeditwarning":1,"prefershttps":1,"vector-simplesearch":1,"usebetatoolbar":1,"usebetatoolbar-cgd":1,"wikieditor-preview":1,"language":"en","variant-gan":"gan","variant-iu":"iu","variant-kk":"kk","variant-ku":"ku","variant-shi":"shi","variant-sr":"sr","variant-tg":"tg","variant-uz":"uz","variant-zh":"zh","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false,"searchNs420":false,"searchNs421":false,"variant":"en"});},{},{});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":false,"watchToken":false});},{},{});
+/* cache key: db_bitcoin_en:resourceloader:filter:minify-js:7:75c8e6e10b529ec0db916046c7049b56 */
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.legacy.ajax","skins.vector.js"]);
+}</script>
+<style type="text/css">.source-cpp{line-height:normal;}.source-cpp li,.source-cpp pre{line-height:normal;border:0px none white;}.cpp.source-cpp .de1,.cpp.source-cpp .de2{font:normal normal 1em/1.2em monospace;margin:0;padding:0;background:none;vertical-align:top;}.cpp.source-cpp{font-family:monospace;}.cpp.source-cpp .imp{font-weight:bold;color:red;}.cpp.source-cpp li,.cpp.source-cpp .li1{font-weight:normal;vertical-align:top;}.cpp.source-cpp .ln{width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}.cpp.source-cpp .li2{font-weight:bold;vertical-align:top;}.cpp.source-cpp .kw1{color:#0000ff;}.cpp.source-cpp .kw2{color:#0000ff;}.cpp.source-cpp .kw3{color:#0000dd;}.cpp.source-cpp .kw4{color:#0000ff;}.cpp.source-cpp .co1{color:#666666;}.cpp.source-cpp .co2{color:#339900;}.cpp.source-cpp .coMULTI{color:#ff0000;font-style:italic;}.cpp.source-cpp .es0{color:#000099;font-weight:bold;}.cpp.source-cpp .es1{color:#000099;font-weight:bold;}.cpp.source-cpp .es2{color:#660099;font-weight:bold;}.cpp.source-cpp .es3{color:#660099;font-weight:bold;}.cpp.source-cpp .es4{color:#660099;font-weight:bold;}.cpp.source-cpp .es5{color:#006699;font-weight:bold;}.cpp.source-cpp .br0{color:#008000;}.cpp.source-cpp .sy0{color:#008000;}.cpp.source-cpp .sy1{color:#000080;}.cpp.source-cpp .sy2{color:#000040;}.cpp.source-cpp .sy3{color:#000040;}.cpp.source-cpp .sy4{color:#008080;}.cpp.source-cpp .st0{color:#FF0000;}.cpp.source-cpp .nu0{color:#0000dd;}.cpp.source-cpp .nu6{color:#208080;}.cpp.source-cpp .nu8{color:#208080;}.cpp.source-cpp .nu12{color:#208080;}.cpp.source-cpp .nu16{color:#800080;}.cpp.source-cpp .nu17{color:#800080;}.cpp.source-cpp .nu18{color:#800080;}.cpp.source-cpp .nu19{color:#800080;}.cpp.source-cpp .me1{color:#007788;}.cpp.source-cpp .me2{color:#007788;}.cpp.source-cpp .ln-xtra,.cpp.source-cpp li.ln-xtra,.cpp.source-cpp div.ln-xtra{background-color:#ffc;}.cpp.source-cpp span.xtra{display:block;}</style><!--[if lt IE 7]><style type="text/css">body{behavior:url("/w/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-OP_CHECKSIG skin-vector action-view vector-animateLayout">
+<div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+<a id="top"></a>
+<div id="mw-js-message" style="display:none;"></div>
+<h1 id="firstHeading" class="firstHeading" lang="en"><span dir="auto">OP CHECKSIG</span></h1>
+<div id="bodyContent">
+<div id="siteSub">From Bitcoin</div>
+<div id="contentSub"></div>
+<div id="jump-to-nav" class="mw-jump">
+Jump to: <a href="#mw-navigation">navigation</a>, <a href="#p-search">search</a>
+</div>
+<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><p>OP_CHECKSIG is <a href="/wiki/Script" title="Script">script</a> opcode used to verify that the signature for a tx input is valid. OP_CHECKSIG expects two values to be on the stack, these are, in order of stack depth, the public key and the signature of the script. These two values are normally obtained by running the scriptSig script of the transaction input we are attempting to validate. After the scriptSig script is run the script is deleted but the stack is left as is, and then the scriptPubKey script from the previous transaction output that is now being spent is run, generally concluding in an OP_CHECKSIG.
+</p><p>The standard scriptPubKey checks that the public key (actually a hash of) is a particular value, and that OP_CHECKSIG passes.
+</p><p>For normal transaction inputs if the creator of the current transaction can successfully create a ScriptSig signature that uses the right public key for the ScriptPubKey of the transaction output they are attempting to spend, that transaction input is considered valid.
+</p>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Parameters"><span class="tocnumber">1</span> <span class="toctext">Parameters</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#How_it_works"><span class="tocnumber">2</span> <span class="toctext">How it works</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#Hashtype_SIGHASH_ALL_.28default.29"><span class="tocnumber">2.1</span> <span class="toctext">Hashtype SIGHASH_ALL (default)</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Procedure_for_Hashtype_SIGHASH_NONE"><span class="tocnumber">2.2</span> <span class="toctext">Procedure for Hashtype SIGHASH_NONE</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Procedure_for_Hashtype_SIGHASH_SINGLE"><span class="tocnumber">2.3</span> <span class="toctext">Procedure for Hashtype SIGHASH_SINGLE</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Procedure_for_Hashtype_SIGHASH_ANYONECANPAY"><span class="tocnumber">2.4</span> <span class="toctext">Procedure for Hashtype SIGHASH_ANYONECANPAY</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Final_signature_check"><span class="tocnumber">2.5</span> <span class="toctext">Final signature check</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-8"><a href="#Return_values"><span class="tocnumber">3</span> <span class="toctext">Return values</span></a></li>
+<li class="toclevel-1 tocsection-9"><a href="#Code_samples_and_raw_dumps"><span class="tocnumber">4</span> <span class="toctext">Code samples and raw dumps</span></a></li>
+<li class="toclevel-1 tocsection-10"><a href="#References"><span class="tocnumber">5</span> <span class="toctext">References</span></a></li>
+</ul>
+</div>
+<h2><span class="mw-headline" id="Parameters">Parameters</span></h2>
+<p>In addition to the script code itself and the stack parameters, to operate OP_CHECKSIG needs to know the current transaction and the index of current transaction input.
+</p>
+<h2><span class="mw-headline" id="How_it_works">How it works</span></h2>
+<p>Firstly always this (the default) procedure is applied:
+</p>
+<div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Bitcoin_OpCheckSig_InDetail.png" class="image"><img alt="" src="/w/images/en/thumb/7/70/Bitcoin_OpCheckSig_InDetail.png/180px-Bitcoin_OpCheckSig_InDetail.png" width="180" height="240" class="thumbimage" srcset="/w/images/en/thumb/7/70/Bitcoin_OpCheckSig_InDetail.png/270px-Bitcoin_OpCheckSig_InDetail.png 1.5x, /w/images/en/thumb/7/70/Bitcoin_OpCheckSig_InDetail.png/360px-Bitcoin_OpCheckSig_InDetail.png 2x"/></a> <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Bitcoin_OpCheckSig_InDetail.png" class="internal" title="Enlarge"><img src="/w/skins/common/images/magnify-clip.png" width="15" height="11" alt=""/></a></div>Signature verification process of the default procedure</div></div></div>
+<ol>
+<li> the public key and the signature are popped from the stack, in that order. If the hash-type value is 0, then it is replaced by the last_byte of the signature. Then the last byte of the signature is always deleted.
+</li>
+<li> A new subscript is created from the instruction from the most recently parsed OP_CODESEPARATOR (last one in script) to the end of the script. If there is no OP_CODESEPARATOR the entire script becomes the subscript (hereby referred to as subScript)
+</li>
+<li> The sig is deleted from subScript.
+</li>
+<li> All OP_CODESEPARATORS are removed from subScript
+</li>
+<li> The hashtype is removed from the last byte of the sig and stored
+</li>
+<li> A copy is made of the current transaction (hereby referred to txCopy)
+</li>
+<li> The scripts for all transaction inputs in txCopy are set to empty scripts (exactly 1 byte 0x00)
+</li>
+<li> The script for the current transaction input in txCopy is set to subScript (lead in by its length as a var-integer encoded!)
+</li>
+</ol>
+<p>Now depending on the hashtype various things can happen to txCopy, these will be discussed individually.
+</p><p><b>Hashtype Values (from script.h):</b>
+</p>
+<table class="wikitable">
+<tr>
+<th> Name </th>
+<th> Value
+</th></tr>
+<tr>
+<td> SIGHASH_ALL </td>
+<td> 0x00000001
+</td></tr>
+<tr>
+<td> SIGHASH_NONE </td>
+<td> 0x00000002
+</td></tr>
+<tr>
+<td> SIGHASH_SINGLE </td>
+<td> 0x00000003
+</td></tr>
+<tr>
+<td> SIGHASH_ANYONECANPAY </td>
+<td> 0x00000080
+</td></tr></table>
+<ol>
+<li> If (hashtype&amp;31) = SIGHASH_NONE then apply the SIGHASH_NONE-procedure
+<li> If (hashtype&amp;31) = SIGHASH_SINGLE then apply the SIGHASH_SINGLE-procedure
+<li> If hashtype &amp; SIGHASH_ANYONECANPAY then apply the SIGHASH_ANYONECANPAY-procedure
+</ol>
+<p>Hence, hashtype SIGHASH_ANYONECANPAY may be applied also after any other hashtype-procedure<sup id="cite_ref-0" class="reference"><a href="#cite_note-0">[1]</a></sup>. Besides the four listed hashtypes only a hashtype of value 0 appears a few times in the (main) block chain (and is handled like SIGHASH_ALL).
+</p>
+<h3><span class="mw-headline" id="Hashtype_SIGHASH_ALL_.28default.29">Hashtype SIGHASH_ALL (default)</span></h3>
+<p>No special further handling occurs in the default case. Think of this as "sign <b>all</b> of the outputs." Which is already done by the default procedure.
+</p>
+<h3><span class="mw-headline" id="Procedure_for_Hashtype_SIGHASH_NONE">Procedure for Hashtype SIGHASH_NONE</span></h3>
+<ol>
+<li> The output of txCopy is set to a vector of zero size.
+</li>
+<li> All other inputs aside from the current input in txCopy have their nSequence index set to zero
+</li>
+</ol>
+<p>Think of this as "sign <b>none</b> of the outputs-- I don't care where the bitcoins go."
+</p>
+<h3><span class="mw-headline" id="Procedure_for_Hashtype_SIGHASH_SINGLE">Procedure for Hashtype SIGHASH_SINGLE</span></h3>
+<ol>
+<li> The output of txCopy is resized to the size of the current input index+1.
+</li>
+<li> All other txCopy outputs aside from the output that is the same as the current input index are set to a blank script and a value of (long) -1.
+</li>
+<li> All other txCopy inputs aside from the current input are set to have an nSequence index of zero.
+</li>
+</ol>
+<p>Think of this as "sign <b>one</b> of the outputs-- I don't care where the other outputs go".
+</p><p>Note: The transaction that uses SIGHASH_SINGLE type of signature should not have more inputs than outputs.
+However if it does (because of the pre-existing implementation), it shall not be rejected, but instead for every "illegal" input (meaning: an input that has an index bigger than the maximum output index) the node should still verify it, though assuming the hash of 0000000000000000000000000000000000000000000000000000000000000001 <a rel="nofollow" class="external autonumber" href="https://bitcointalk.org/index.php?topic=260595.0">[1]</a>
+</p>
+<h3><span class="mw-headline" id="Procedure_for_Hashtype_SIGHASH_ANYONECANPAY">Procedure for Hashtype SIGHASH_ANYONECANPAY</span></h3>
+<ol>
+<li> The txCopy input vector is resized to a length of one.
+</li>
+<li> The subScript (lead in by its length as a var-integer encoded!) is set as the first and only member of this vector.
+</li>
+</ol>
+<p>Think of this as "Let other people add inputs to this transaction, I don't care where the rest of the bitcoins come from."
+</p>
+<h3><span class="mw-headline" id="Final_signature_check">Final signature check</span></h3>
+<p>An array of bytes is constructed from the serialized txCopy appended by four bytes for the hash type. This array is sha256 hashed twice, then the public key is used to check the supplied signature against the hash.
+The secp256k1 elliptic curve is used for the verification with the given public key.
+</p>
+<h2><span class="mw-headline" id="Return_values">Return values</span></h2>
+<p>OP_CHECKSIG will push true to the stack if the check passed, false otherwise.
+OP_CHECKSIG_VERIFY leaves nothing on the stack but will cause the script eval to fail immediately if the check does not pass.
+</p>
+<h2><span class="mw-headline" id="Code_samples_and_raw_dumps">Code samples and raw dumps</span></h2>
+<p>Taking the first transaction in Bitcoin which is in block number 170, we would get after serialising the transaction but before we hash+sign (or verify) it:
+</p>
+<ul>
+<li> <a rel="nofollow" class="external free" href="http://blockexplorer.com/block/00000000d1145790a8694403d4063f323d499e655c83426834d4ce2f8dd4a2ee">http://blockexplorer.com/block/00000000d1145790a8694403d4063f323d499e655c83426834d4ce2f8dd4a2ee</a>
+</li>
+<li> <a rel="nofollow" class="external free" href="http://blockexplorer.com/tx/f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16">http://blockexplorer.com/tx/f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16</a>
+</li>
+</ul>
+<p>See also <a rel="nofollow" class="external text" href="https://gitorious.org/libbitcoin/libbitcoin">libbitcoin</a> for code samples.
+</p>
+<pre>
+01 00 00 00              version
+01                       number of inputs (var_uint)
+
+input 0:
+c9 97 a5 e5 6e 10 41 02  input address hash
+fa 20 9c 6a 85 2d d9 06 
+60 a2 0b 2d 9c 35 24 23 
+ed ce 25 85 7f cd 37 04
+00 00 00 00              input index
+
+48                       size of script (var_uint)
+47                       push 71 bytes to stack
+30 44 02 20 4e 45 e1 69
+32 b8 af 51 49 61 a1 d3
+a1 a2 5f df 3f 4f 77 32
+e9 d6 24 c6 c6 15 48 ab
+5f b8 cd 41 02 20 18 15
+22 ec 8e ca 07 de 48 60
+a4 ac dd 12 90 9d 83 1c
+c5 6c bb ac 46 22 08 22
+21 a8 76 8d 1d 09 01
+ff ff ff ff              sequence
+
+02                       number of outputs (var_uint)
+
+output 0:
+00 ca 9a 3b 00 00 00 00  amount = 10.00000000
+43                       size of script (var_uint)
+script for output 0:
+41                       push 65 bytes to stack
+04 ae 1a 62 fe 09 c5 f5 
+1b 13 90 5f 07 f0 6b 99 
+a2 f7 15 9b 22 25 f3 74 
+cd 37 8d 71 30 2f a2 84 
+14 e7 aa b3 73 97 f5 54 
+a7 df 5f 14 2c 21 c1 b7 
+30 3b 8a 06 26 f1 ba de 
+d5 c7 2a 70 4f 7e 6c d8 
+4c 
+ac                       OP_CHECKSIG
+
+output 1:
+00 28 6b ee 00 00 00 00  amount = 40.00000000
+43                       size of script (var_uint)
+script for output 1:
+41                       push 65 bytes to stack
+04 11 db 93 e1 dc db 8a  
+01 6b 49 84 0f 8c 53 bc 
+1e b6 8a 38 2e 97 b1 48 
+2e ca d7 b1 48 a6 90 9a
+5c b2 e0 ea dd fb 84 cc 
+f9 74 44 64 f8 2e 16 0b 
+fa 9b 8b 64 f9 d4 c0 3f 
+99 9b 86 43 f6 56 b4 12 
+a3                       
+ac                       OP_CHECKSIG
+
+00 00 00 00              locktime
+01 00 00 00              hash_code_type (added on)
+
+result =
+01 00 00 00 01 c9 97 a5 e5 6e 10 41 02 fa 20 9c 6a 85 2d d9 06 60 a2 0b 2d 9c 35 
+24 23 ed ce 25 85 7f cd 37 04 00 00 00 00 43 41 04 11 db 93 e1 dc db 8a 01 6b 49 
+84 0f 8c 53 bc 1e b6 8a 38 2e 97 b1 48 2e ca d7 b1 48 a6 90 9a 5c b2 e0 ea dd fb 
+84 cc f9 74 44 64 f8 2e 16 0b fa 9b 8b 64 f9 d4 c0 3f 99 9b 86 43 f6 56 b4 12 a3 
+ac ff ff ff ff 02 00 ca 9a 3b 00 00 00 00 43 41 04 ae 1a 62 fe 09 c5 f5 1b 13 90 
+5f 07 f0 6b 99 a2 f7 15 9b 22 25 f3 74 cd 37 8d 71 30 2f a2 84 14 e7 aa b3 73 97 
+f5 54 a7 df 5f 14 2c 21 c1 b7 30 3b 8a 06 26 f1 ba de d5 c7 2a 70 4f 7e 6c d8 4c 
+ac 00 28 6b ee 00 00 00 00 43 41 04 11 db 93 e1 dc db 8a 01 6b 49 84 0f 8c 53 bc 
+1e b6 8a 38 2e 97 b1 48 2e ca d7 b1 48 a6 90 9a 5c b2 e0 ea dd fb 84 cc f9 74 44 
+64 f8 2e 16 0b fa 9b 8b 64 f9 d4 c0 3f 99 9b 86 43 f6 56 b4 12 a3 ac 00 00 00 00 
+01 00 00 00 
+</pre>
+<p>To understand where that raw dump has come from, it may be useful to examine tests/ec-key.cpp in <a rel="nofollow" class="external text" href="https://gitorious.org/libbitcoin/libbitcoin">libbitcoin</a>,
+</p><p><a rel="nofollow" class="external text" href="https://gitorious.org/libbitcoin/libbitcoin">libbitcoin</a> has a unit test under tests/ec-key.cpp (make ec-key &amp;&amp; ./bin/tests/ec-key). There is also a working OP_CHECKSIG implementation in src/script.cpp under script::op_checksig(). See also the unit test: tests/script-test.cpp
+</p>
+<pre dir="ltr" class="mw-geshi mw-content-ltr"><div class="cpp source-cpp"><pre class="de1"><span class="co2">#include &lt;iostream&gt;</span>
+<span class="co2">#include &lt;iomanip&gt;</span>
+<span class="co2">#include &lt;bitcoin/util/serializer.hpp&gt;</span>
+<span class="co2">#include &lt;bitcoin/util/elliptic_curve_key.hpp&gt;</span>
+<span class="co2">#include &lt;bitcoin/util/sha256.hpp&gt;</span>
+<span class="co2">#include &lt;bitcoin/util/assert.hpp&gt;</span>
+<span class="co2">#include &lt;bitcoin/util/logger.hpp&gt;</span>
+<span class="co2">#include &lt;bitcoin/types.hpp&gt;</span>
+<span class="co2">#include &lt;openssl/ecdsa.h&gt;</span>
+<span class="co2">#include &lt;openssl/obj_mac.h&gt;</span>
+<span class="kw2">using</span> libbitcoin<span class="sy4">::</span><span class="me2">elliptic_curve_key</span><span class="sy4">;</span>
+<span class="kw2">using</span> libbitcoin<span class="sy4">::</span><span class="me2">serializer</span><span class="sy4">;</span>
+<span class="kw2">using</span> libbitcoin<span class="sy4">::</span><span class="me2">hash_digest</span><span class="sy4">;</span>
+<span class="kw2">using</span> libbitcoin<span class="sy4">::</span><span class="me2">data_chunk</span><span class="sy4">;</span>
+<span class="kw2">using</span> libbitcoin<span class="sy4">::</span><span class="me2">log_info</span><span class="sy4">;</span>
+<span class="kw2">using</span> libbitcoin<span class="sy4">::</span><span class="me2">log_fatal</span><span class="sy4">;</span>
+&#160;
+<span class="kw4">int</span> main<span class="br0">&#40;</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+    serializer ss<span class="sy4">;</span>
+    <span class="co1">// blk number 170, tx 1, input 0</span>
+    <span class="co1">// version = 1</span>
+    ss.<span class="me1">write_4_bytes</span><span class="br0">&#40;</span><span class="nu0">1</span><span class="br0">&#41;</span><span class="sy4">;</span>
+    <span class="co1">// 1 inputs</span>
+    ss.<span class="me1">write_var_uint</span><span class="br0">&#40;</span><span class="nu0">1</span><span class="br0">&#41;</span><span class="sy4">;</span>
+&#160;
+    <span class="co1">// input 0</span>
+    <span class="co1">// prevout hash</span>
+    ss.<span class="me1">write_hash</span><span class="br0">&#40;</span>hash_digest<span class="br0">&#123;</span><span class="nu12">0x04</span>, <span class="nu12">0x37</span>, <span class="nu12">0xcd</span>, <span class="nu12">0x7f</span>, <span class="nu12">0x85</span>, <span class="nu12">0x25</span>, <span class="nu12">0xce</span>, <span class="nu12">0xed</span>, <span class="nu12">0x23</span>, <span class="nu12">0x24</span>, <span class="nu12">0x35</span>, <span class="nu12">0x9c</span>, <span class="nu12">0x2d</span>, <span class="nu12">0x0b</span>, <span class="nu12">0xa2</span>, <span class="nu12">0x60</span>, <span class="nu12">0x06</span>, <span class="nu12">0xd9</span>, <span class="nu12">0x2d</span>, <span class="nu12">0x85</span>, <span class="nu12">0x6a</span>, <span class="nu12">0x9c</span>, <span class="nu12">0x20</span>, <span class="nu12">0xfa</span>, <span class="nu12">0x02</span>, <span class="nu12">0x41</span>, <span class="nu12">0x10</span>, <span class="nu12">0x6e</span>, <span class="nu12">0xe5</span>, <span class="nu12">0xa5</span>, <span class="nu12">0x97</span>, <span class="nu12">0xc9</span><span class="br0">&#125;</span><span class="br0">&#41;</span><span class="sy4">;</span>
+    <span class="co1">// prevout index </span>
+    ss.<span class="me1">write_4_bytes</span><span class="br0">&#40;</span><span class="nu0">0</span><span class="br0">&#41;</span><span class="sy4">;</span>
+&#160;
+    <span class="co1">// input script after running OP_CHECKSIG for this tx is a single</span>
+    <span class="co1">// OP_CHECKSIG opcode</span>
+    data_chunk raw_data<span class="sy4">;</span>
+    raw_data <span class="sy1">=</span> <span class="br0">&#123;</span><span class="nu12">0x04</span>, <span class="nu12">0x11</span>, <span class="nu12">0xdb</span>, <span class="nu12">0x93</span>, <span class="nu12">0xe1</span>, <span class="nu12">0xdc</span>, <span class="nu12">0xdb</span>, <span class="nu12">0x8a</span>, <span class="nu12">0x01</span>, <span class="nu12">0x6b</span>, <span class="nu12">0x49</span>, <span class="nu12">0x84</span>, <span class="nu12">0x0f</span>, <span class="nu12">0x8c</span>, <span class="nu12">0x53</span>, <span class="nu12">0xbc</span>, <span class="nu12">0x1e</span>, <span class="nu12">0xb6</span>, <span class="nu12">0x8a</span>, <span class="nu12">0x38</span>, <span class="nu12">0x2e</span>, <span class="nu12">0x97</span>, <span class="nu12">0xb1</span>, <span class="nu12">0x48</span>, <span class="nu12">0x2e</span>, <span class="nu12">0xca</span>, <span class="nu12">0xd7</span>, <span class="nu12">0xb1</span>, <span class="nu12">0x48</span>, <span class="nu12">0xa6</span>, <span class="nu12">0x90</span>, <span class="nu12">0x9a</span>, <span class="nu12">0x5c</span>, <span class="nu12">0xb2</span>, <span class="nu12">0xe0</span>, <span class="nu12">0xea</span>, <span class="nu12">0xdd</span>, <span class="nu12">0xfb</span>, <span class="nu12">0x84</span>, <span class="nu12">0xcc</span>, <span class="nu12">0xf9</span>, <span class="nu12">0x74</span>, <span class="nu12">0x44</span>, <span class="nu12">0x64</span>, <span class="nu12">0xf8</span>, <span class="nu12">0x2e</span>, <span class="nu12">0x16</span>, <span class="nu12">0x0b</span>, <span class="nu12">0xfa</span>, <span class="nu12">0x9b</span>, <span class="nu12">0x8b</span>, <span class="nu12">0x64</span>, <span class="nu12">0xf9</span>, <span class="nu12">0xd4</span>, <span class="nu12">0xc0</span>, <span class="nu12">0x3f</span>, <span class="nu12">0x99</span>, <span class="nu12">0x9b</span>, <span class="nu12">0x86</span>, <span class="nu12">0x43</span>, <span class="nu12">0xf6</span>, <span class="nu12">0x56</span>, <span class="nu12">0xb4</span>, <span class="nu12">0x12</span>, <span class="nu12">0xa3</span><span class="br0">&#125;</span><span class="sy4">;</span>
+    data_chunk raw_script<span class="sy4">;</span>
+    raw_script <span class="sy1">=</span> data_chunk<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy4">;</span>
+    raw_script.<span class="me1">push_back</span><span class="br0">&#40;</span>raw_data.<span class="me1">size</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy4">;</span>
+    libbitcoin<span class="sy4">::</span><span class="me2">extend_data</span><span class="br0">&#40;</span>raw_script, raw_data<span class="br0">&#41;</span><span class="sy4">;</span>
+    raw_script.<span class="me1">push_back</span><span class="br0">&#40;</span><span class="nu0">172</span><span class="br0">&#41;</span><span class="sy4">;</span>
+    ss.<span class="me1">write_var_uint</span><span class="br0">&#40;</span>raw_script.<span class="me1">size</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy4">;</span>
+    ss.<span class="me1">write_data</span><span class="br0">&#40;</span>raw_script<span class="br0">&#41;</span><span class="sy4">;</span>
+    <span class="co1">// sequence</span>
+    ss.<span class="me1">write_4_bytes</span><span class="br0">&#40;</span><span class="nu12">0xffffffff</span><span class="br0">&#41;</span><span class="sy4">;</span>
+&#160;
+    <span class="co1">// 2 outputs for this tx</span>
+    ss.<span class="me1">write_var_uint</span><span class="br0">&#40;</span><span class="nu0">2</span><span class="br0">&#41;</span><span class="sy4">;</span>
+&#160;
+    <span class="co1">// output 0</span>
+    ss.<span class="me1">write_8_bytes</span><span class="br0">&#40;</span><span class="nu0">1000000000</span><span class="br0">&#41;</span><span class="sy4">;</span>
+    <span class="co1">// script for output 0</span>
+    raw_data <span class="sy1">=</span> <span class="br0">&#123;</span><span class="nu12">0x04</span>, <span class="nu12">0xae</span>, <span class="nu12">0x1a</span>, <span class="nu12">0x62</span>, <span class="nu12">0xfe</span>, <span class="nu12">0x09</span>, <span class="nu12">0xc5</span>, <span class="nu12">0xf5</span>, <span class="nu12">0x1b</span>, <span class="nu12">0x13</span>, <span class="nu12">0x90</span>, <span class="nu12">0x5f</span>, <span class="nu12">0x07</span>, <span class="nu12">0xf0</span>, <span class="nu12">0x6b</span>, <span class="nu12">0x99</span>, <span class="nu12">0xa2</span>, <span class="nu12">0xf7</span>, <span class="nu12">0x15</span>, <span class="nu12">0x9b</span>, <span class="nu12">0x22</span>, <span class="nu12">0x25</span>, <span class="nu12">0xf3</span>, <span class="nu12">0x74</span>, <span class="nu12">0xcd</span>, <span class="nu12">0x37</span>, <span class="nu12">0x8d</span>, <span class="nu12">0x71</span>, <span class="nu12">0x30</span>, <span class="nu12">0x2f</span>, <span class="nu12">0xa2</span>, <span class="nu12">0x84</span>, <span class="nu12">0x14</span>, <span class="nu12">0xe7</span>, <span class="nu12">0xaa</span>, <span class="nu12">0xb3</span>, <span class="nu12">0x73</span>, <span class="nu12">0x97</span>, <span class="nu12">0xf5</span>, <span class="nu12">0x54</span>, <span class="nu12">0xa7</span>, <span class="nu12">0xdf</span>, <span class="nu12">0x5f</span>, <span class="nu12">0x14</span>, <span class="nu12">0x2c</span>, <span class="nu12">0x21</span>, <span class="nu12">0xc1</span>, <span class="nu12">0xb7</span>, <span class="nu12">0x30</span>, <span class="nu12">0x3b</span>, <span class="nu12">0x8a</span>, <span class="nu12">0x06</span>, <span class="nu12">0x26</span>, <span class="nu12">0xf1</span>, <span class="nu12">0xba</span>, <span class="nu12">0xde</span>, <span class="nu12">0xd5</span>, <span class="nu12">0xc7</span>, <span class="nu12">0x2a</span>, <span class="nu12">0x70</span>, <span class="nu12">0x4f</span>, <span class="nu12">0x7e</span>, <span class="nu12">0x6c</span>, <span class="nu12">0xd8</span>, <span class="nu12">0x4c</span><span class="br0">&#125;</span><span class="sy4">;</span>
+    <span class="co1">// when data &lt; 75, we can just write it's length as a single byte ('special'</span>
+    <span class="co1">// opcodes)</span>
+    raw_script <span class="sy1">=</span> data_chunk<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy4">;</span>
+    raw_script.<span class="me1">push_back</span><span class="br0">&#40;</span>raw_data.<span class="me1">size</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy4">;</span>
+    libbitcoin<span class="sy4">::</span><span class="me2">extend_data</span><span class="br0">&#40;</span>raw_script, raw_data<span class="br0">&#41;</span><span class="sy4">;</span>
+    <span class="co1">// OP_CHECKSIG</span>
+    raw_script.<span class="me1">push_back</span><span class="br0">&#40;</span><span class="nu0">172</span><span class="br0">&#41;</span><span class="sy4">;</span>
+    <span class="co1">// now actually write the script</span>
+    ss.<span class="me1">write_var_uint</span><span class="br0">&#40;</span>raw_script.<span class="me1">size</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy4">;</span>
+    ss.<span class="me1">write_data</span><span class="br0">&#40;</span>raw_script<span class="br0">&#41;</span><span class="sy4">;</span>
+&#160;
+    <span class="co1">// output 1</span>
+    ss.<span class="me1">write_8_bytes</span><span class="br0">&#40;</span><span class="nu0">4000000000</span><span class="br0">&#41;</span><span class="sy4">;</span>
+    <span class="co1">// script for output 0</span>
+    raw_data <span class="sy1">=</span> <span class="br0">&#123;</span><span class="nu12">0x04</span>, <span class="nu12">0x11</span>, <span class="nu12">0xdb</span>, <span class="nu12">0x93</span>, <span class="nu12">0xe1</span>, <span class="nu12">0xdc</span>, <span class="nu12">0xdb</span>, <span class="nu12">0x8a</span>, <span class="nu12">0x01</span>, <span class="nu12">0x6b</span>, <span class="nu12">0x49</span>, <span class="nu12">0x84</span>, <span class="nu12">0x0f</span>, <span class="nu12">0x8c</span>, <span class="nu12">0x53</span>, <span class="nu12">0xbc</span>, <span class="nu12">0x1e</span>, <span class="nu12">0xb6</span>, <span class="nu12">0x8a</span>, <span class="nu12">0x38</span>, <span class="nu12">0x2e</span>, <span class="nu12">0x97</span>, <span class="nu12">0xb1</span>, <span class="nu12">0x48</span>, <span class="nu12">0x2e</span>, <span class="nu12">0xca</span>, <span class="nu12">0xd7</span>, <span class="nu12">0xb1</span>, <span class="nu12">0x48</span>, <span class="nu12">0xa6</span>, <span class="nu12">0x90</span>, <span class="nu12">0x9a</span>, <span class="nu12">0x5c</span>, <span class="nu12">0xb2</span>, <span class="nu12">0xe0</span>, <span class="nu12">0xea</span>, <span class="nu12">0xdd</span>, <span class="nu12">0xfb</span>, <span class="nu12">0x84</span>, <span class="nu12">0xcc</span>, <span class="nu12">0xf9</span>, <span class="nu12">0x74</span>, <span class="nu12">0x44</span>, <span class="nu12">0x64</span>, <span class="nu12">0xf8</span>, <span class="nu12">0x2e</span>, <span class="nu12">0x16</span>, <span class="nu12">0x0b</span>, <span class="nu12">0xfa</span>, <span class="nu12">0x9b</span>, <span class="nu12">0x8b</span>, <span class="nu12">0x64</span>, <span class="nu12">0xf9</span>, <span class="nu12">0xd4</span>, <span class="nu12">0xc0</span>, <span class="nu12">0x3f</span>, <span class="nu12">0x99</span>, <span class="nu12">0x9b</span>, <span class="nu12">0x86</span>, <span class="nu12">0x43</span>, <span class="nu12">0xf6</span>, <span class="nu12">0x56</span>, <span class="nu12">0xb4</span>, <span class="nu12">0x12</span>, <span class="nu12">0xa3</span><span class="br0">&#125;</span><span class="sy4">;</span>
+    <span class="co1">// when data &lt; 75, we can just write it's length as a single byte ('special'</span>
+    raw_script.<span class="me1">push_back</span><span class="br0">&#40;</span>raw_data.<span class="me1">size</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy4">;</span>
+    libbitcoin<span class="sy4">::</span><span class="me2">extend_data</span><span class="br0">&#40;</span>raw_script, raw_data<span class="br0">&#41;</span><span class="sy4">;</span>
+    <span class="co1">// OP_CHECKSIG</span>
+    raw_script.<span class="me1">push_back</span><span class="br0">&#40;</span><span class="nu0">172</span><span class="br0">&#41;</span><span class="sy4">;</span>
+    <span class="co1">// now actually write the script</span>
+    ss.<span class="me1">write_var_uint</span><span class="br0">&#40;</span>raw_script.<span class="me1">size</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy4">;</span>
+    ss.<span class="me1">write_data</span><span class="br0">&#40;</span>raw_script<span class="br0">&#41;</span><span class="sy4">;</span>
+&#160;
+    <span class="co1">// End of 2 outputs</span>
+&#160;
+    <span class="co1">// locktime</span>
+    ss.<span class="me1">write_4_bytes</span><span class="br0">&#40;</span><span class="nu0">0</span><span class="br0">&#41;</span><span class="sy4">;</span>
+&#160;
+    <span class="co1">// write hash_type_code</span>
+    ss.<span class="me1">write_4_bytes</span><span class="br0">&#40;</span><span class="nu0">1</span><span class="br0">&#41;</span><span class="sy4">;</span>
+&#160;
+    <span class="co1">// Dump hex to screen</span>
+    log_info<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy1">&lt;&lt;</span> <span class="st0">&quot;hashing:&quot;</span><span class="sy4">;</span>
+    <span class="br0">&#123;</span>
+        <span class="kw4">auto</span> log_obj <span class="sy1">=</span> log_info<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy4">;</span>
+        log_obj <span class="sy1">&lt;&lt;</span> std<span class="sy4">::</span><span class="me2">hex</span><span class="sy4">;</span>
+        <span class="kw1">for</span> <span class="br0">&#40;</span><span class="kw4">int</span> val<span class="sy4">:</span> ss.<span class="me1">get_data</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+            log_obj <span class="sy1">&lt;&lt;</span> std<span class="sy4">::</span><span class="me2">setfill</span><span class="br0">&#40;</span><span class="st0">'0'</span><span class="br0">&#41;</span> <span class="sy1">&lt;&lt;</span> std<span class="sy4">::</span><span class="me2">setw</span><span class="br0">&#40;</span><span class="nu0">2</span><span class="br0">&#41;</span> <span class="sy1">&lt;&lt;</span> val <span class="sy1">&lt;&lt;</span> <span class="st0">' '</span><span class="sy4">;</span>
+    <span class="br0">&#125;</span>
+    log_info<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy4">;</span>
+&#160;
+    data_chunk raw_tx <span class="sy1">=</span> <span class="br0">&#123;</span><span class="nu12">0x01</span>, <span class="nu12">0x00</span>, <span class="nu12">0x00</span>, <span class="nu12">0x00</span>, <span class="nu12">0x01</span>, <span class="nu12">0xc9</span>, <span class="nu12">0x97</span>, <span class="nu12">0xa5</span>, <span class="nu12">0xe5</span>, <span class="nu12">0x6e</span>, <span class="nu12">0x10</span>, <span class="nu12">0x41</span>, <span class="nu12">0x02</span>, <span class="nu12">0xfa</span>, <span class="nu12">0x20</span>, <span class="nu12">0x9c</span>, <span class="nu12">0x6a</span>, <span class="nu12">0x85</span>, <span class="nu12">0x2d</span>, <span class="nu12">0xd9</span>, <span class="nu12">0x06</span>, <span class="nu12">0x60</span>, <span class="nu12">0xa2</span>, <span class="nu12">0x0b</span>, <span class="nu12">0x2d</span>, <span class="nu12">0x9c</span>, <span class="nu12">0x35</span>, <span class="nu12">0x24</span>, <span class="nu12">0x23</span>, <span class="nu12">0xed</span>, <span class="nu12">0xce</span>, <span class="nu12">0x25</span>, <span class="nu12">0x85</span>, <span class="nu12">0x7f</span>, <span class="nu12">0xcd</span>, <span class="nu12">0x37</span>, <span class="nu12">0x04</span>, <span class="nu12">0x00</span>, <span class="nu12">0x00</span>, <span class="nu12">0x00</span>, <span class="nu12">0x00</span>, <span class="nu12">0x43</span>, <span class="nu12">0x41</span>, <span class="nu12">0x04</span>, <span class="nu12">0x11</span>, <span class="nu12">0xdb</span>, <span class="nu12">0x93</span>, <span class="nu12">0xe1</span>, <span class="nu12">0xdc</span>, <span class="nu12">0xdb</span>, <span class="nu12">0x8a</span>, <span class="nu12">0x01</span>, <span class="nu12">0x6b</span>, <span class="nu12">0x49</span>, <span class="nu12">0x84</span>, <span class="nu12">0x0f</span>, <span class="nu12">0x8c</span>, <span class="nu12">0x53</span>, <span class="nu12">0xbc</span>, <span class="nu12">0x1e</span>, <span class="nu12">0xb6</span>, <span class="nu12">0x8a</span>, <span class="nu12">0x38</span>, <span class="nu12">0x2e</span>, <span class="nu12">0x97</span>, <span class="nu12">0xb1</span>, <span class="nu12">0x48</span>, <span class="nu12">0x2e</span>, <span class="nu12">0xca</span>, <span class="nu12">0xd7</span>, <span class="nu12">0xb1</span>, <span class="nu12">0x48</span>, <span class="nu12">0xa6</span>, <span class="nu12">0x90</span>, <span class="nu12">0x9a</span>, <span class="nu12">0x5c</span>, <span class="nu12">0xb2</span>, <span class="nu12">0xe0</span>, <span class="nu12">0xea</span>, <span class="nu12">0xdd</span>, <span class="nu12">0xfb</span>, <span class="nu12">0x84</span>, <span class="nu12">0xcc</span>, <span class="nu12">0xf9</span>, <span class="nu12">0x74</span>, <span class="nu12">0x44</span>, <span class="nu12">0x64</span>, <span class="nu12">0xf8</span>, <span class="nu12">0x2e</span>, <span class="nu12">0x16</span>, <span class="nu12">0x0b</span>, <span class="nu12">0xfa</span>, <span class="nu12">0x9b</span>, <span class="nu12">0x8b</span>, <span class="nu12">0x64</span>, <span class="nu12">0xf9</span>, <span class="nu12">0xd4</span>, <span class="nu12">0xc0</span>, <span class="nu12">0x3f</span>, <span class="nu12">0x99</span>, <span class="nu12">0x9b</span>, <span class="nu12">0x86</span>, <span class="nu12">0x43</span>, <span class="nu12">0xf6</span>, <span class="nu12">0x56</span>, <span class="nu12">0xb4</span>, <span class="nu12">0x12</span>, <span class="nu12">0xa3</span>, <span class="nu12">0xac</span>, <span class="nu12">0xff</span>, <span class="nu12">0xff</span>, <span class="nu12">0xff</span>, <span class="nu12">0xff</span>, <span class="nu12">0x02</span>, <span class="nu12">0x00</span>, <span class="nu12">0xca</span>, <span class="nu12">0x9a</span>, <span class="nu12">0x3b</span>, <span class="nu12">0x00</span>, <span class="nu12">0x00</span>, <span class="nu12">0x00</span>, <span class="nu12">0x00</span>, <span class="nu12">0x43</span>, <span class="nu12">0x41</span>, <span class="nu12">0x04</span>, <span class="nu12">0xae</span>, <span class="nu12">0x1a</span>, <span class="nu12">0x62</span>, <span class="nu12">0xfe</span>, <span class="nu12">0x09</span>, <span class="nu12">0xc5</span>, <span class="nu12">0xf5</span>, <span class="nu12">0x1b</span>, <span class="nu12">0x13</span>, <span class="nu12">0x90</span>, <span class="nu12">0x5f</span>, <span class="nu12">0x07</span>, <span class="nu12">0xf0</span>, <span class="nu12">0x6b</span>, <span class="nu12">0x99</span>, <span class="nu12">0xa2</span>, <span class="nu12">0xf7</span>, <span class="nu12">0x15</span>, <span class="nu12">0x9b</span>, <span class="nu12">0x22</span>, <span class="nu12">0x25</span>, <span class="nu12">0xf3</span>, <span class="nu12">0x74</span>, <span class="nu12">0xcd</span>, <span class="nu12">0x37</span>, <span class="nu12">0x8d</span>, <span class="nu12">0x71</span>, <span class="nu12">0x30</span>, <span class="nu12">0x2f</span>, <span class="nu12">0xa2</span>, <span class="nu12">0x84</span>, <span class="nu12">0x14</span>, <span class="nu12">0xe7</span>, <span class="nu12">0xaa</span>, <span class="nu12">0xb3</span>, <span class="nu12">0x73</span>, <span class="nu12">0x97</span>, <span class="nu12">0xf5</span>, <span class="nu12">0x54</span>, <span class="nu12">0xa7</span>, <span class="nu12">0xdf</span>, <span class="nu12">0x5f</span>, <span class="nu12">0x14</span>, <span class="nu12">0x2c</span>, <span class="nu12">0x21</span>, <span class="nu12">0xc1</span>, <span class="nu12">0xb7</span>, <span class="nu12">0x30</span>, <span class="nu12">0x3b</span>, <span class="nu12">0x8a</span>, <span class="nu12">0x06</span>, <span class="nu12">0x26</span>, <span class="nu12">0xf1</span>, <span class="nu12">0xba</span>, <span class="nu12">0xde</span>, <span class="nu12">0xd5</span>, <span class="nu12">0xc7</span>, <span class="nu12">0x2a</span>, <span class="nu12">0x70</span>, <span class="nu12">0x4f</span>, <span class="nu12">0x7e</span>, <span class="nu12">0x6c</span>, <span class="nu12">0xd8</span>, <span class="nu12">0x4c</span>, <span class="nu12">0xac</span>, <span class="nu12">0x00</span>, <span class="nu12">0x28</span>, <span class="nu12">0x6b</span>, <span class="nu12">0xee</span>, <span class="nu12">0x00</span>, <span class="nu12">0x00</span>, <span class="nu12">0x00</span>, <span class="nu12">0x00</span>, <span class="nu12">0x43</span>, <span class="nu12">0x41</span>, <span class="nu12">0x04</span>, <span class="nu12">0x11</span>, <span class="nu12">0xdb</span>, <span class="nu12">0x93</span>, <span class="nu12">0xe1</span>, <span class="nu12">0xdc</span>, <span class="nu12">0xdb</span>, <span class="nu12">0x8a</span>, <span class="nu12">0x01</span>, <span class="nu12">0x6b</span>, <span class="nu12">0x49</span>, <span class="nu12">0x84</span>, <span class="nu12">0x0f</span>, <span class="nu12">0x8c</span>, <span class="nu12">0x53</span>, <span class="nu12">0xbc</span>, <span class="nu12">0x1e</span>, <span class="nu12">0xb6</span>, <span class="nu12">0x8a</span>, <span class="nu12">0x38</span>, <span class="nu12">0x2e</span>, <span class="nu12">0x97</span>, <span class="nu12">0xb1</span>, <span class="nu12">0x48</span>, <span class="nu12">0x2e</span>, <span class="nu12">0xca</span>, <span class="nu12">0xd7</span>, <span class="nu12">0xb1</span>, <span class="nu12">0x48</span>, <span class="nu12">0xa6</span>, <span class="nu12">0x90</span>, <span class="nu12">0x9a</span>, <span class="nu12">0x5c</span>, <span class="nu12">0xb2</span>, <span class="nu12">0xe0</span>, <span class="nu12">0xea</span>, <span class="nu12">0xdd</span>, <span class="nu12">0xfb</span>, <span class="nu12">0x84</span>, <span class="nu12">0xcc</span>, <span class="nu12">0xf9</span>, <span class="nu12">0x74</span>, <span class="nu12">0x44</span>, <span class="nu12">0x64</span>, <span class="nu12">0xf8</span>, <span class="nu12">0x2e</span>, <span class="nu12">0x16</span>, <span class="nu12">0x0b</span>, <span class="nu12">0xfa</span>, <span class="nu12">0x9b</span>, <span class="nu12">0x8b</span>, <span class="nu12">0x64</span>, <span class="nu12">0xf9</span>, <span class="nu12">0xd4</span>, <span class="nu12">0xc0</span>, <span class="nu12">0x3f</span>, <span class="nu12">0x99</span>, <span class="nu12">0x9b</span>, <span class="nu12">0x86</span>, <span class="nu12">0x43</span>, <span class="nu12">0xf6</span>, <span class="nu12">0x56</span>, <span class="nu12">0xb4</span>, <span class="nu12">0x12</span>, <span class="nu12">0xa3</span>, <span class="nu12">0xac</span>, <span class="nu12">0x00</span>, <span class="nu12">0x00</span>, <span class="nu12">0x00</span>, <span class="nu12">0x00</span>, <span class="nu12">0x01</span>, <span class="nu12">0x00</span>, <span class="nu12">0x00</span>, <span class="nu12">0x00</span><span class="br0">&#125;</span><span class="sy4">;</span>
+    BITCOIN_ASSERT<span class="br0">&#40;</span>raw_tx <span class="sy1">==</span> ss.<span class="me1">get_data</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy4">;</span>
+&#160;
+    hash_digest tx_hash <span class="sy1">=</span> libbitcoin<span class="sy4">::</span><span class="me2">generate_sha256_hash</span><span class="br0">&#40;</span>ss.<span class="me1">get_data</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy4">;</span>
+&#160;
+    data_chunk pubkey<span class="br0">&#123;</span><span class="nu12">0x04</span>, <span class="nu12">0x11</span>, <span class="nu12">0xdb</span>, <span class="nu12">0x93</span>, <span class="nu12">0xe1</span>, <span class="nu12">0xdc</span>, <span class="nu12">0xdb</span>, <span class="nu12">0x8a</span>, <span class="nu12">0x01</span>, <span class="nu12">0x6b</span>, <span class="nu12">0x49</span>, <span class="nu12">0x84</span>, <span class="nu12">0x0f</span>, <span class="nu12">0x8c</span>, <span class="nu12">0x53</span>, <span class="nu12">0xbc</span>, <span class="nu12">0x1e</span>, <span class="nu12">0xb6</span>, <span class="nu12">0x8a</span>, <span class="nu12">0x38</span>, <span class="nu12">0x2e</span>, <span class="nu12">0x97</span>, <span class="nu12">0xb1</span>, <span class="nu12">0x48</span>, <span class="nu12">0x2e</span>, <span class="nu12">0xca</span>, <span class="nu12">0xd7</span>, <span class="nu12">0xb1</span>, <span class="nu12">0x48</span>, <span class="nu12">0xa6</span>, <span class="nu12">0x90</span>, <span class="nu12">0x9a</span>, <span class="nu12">0x5c</span>, <span class="nu12">0xb2</span>, <span class="nu12">0xe0</span>, <span class="nu12">0xea</span>, <span class="nu12">0xdd</span>, <span class="nu12">0xfb</span>, <span class="nu12">0x84</span>, <span class="nu12">0xcc</span>, <span class="nu12">0xf9</span>, <span class="nu12">0x74</span>, <span class="nu12">0x44</span>, <span class="nu12">0x64</span>, <span class="nu12">0xf8</span>, <span class="nu12">0x2e</span>, <span class="nu12">0x16</span>, <span class="nu12">0x0b</span>, <span class="nu12">0xfa</span>, <span class="nu12">0x9b</span>, <span class="nu12">0x8b</span>, <span class="nu12">0x64</span>, <span class="nu12">0xf9</span>, <span class="nu12">0xd4</span>, <span class="nu12">0xc0</span>, <span class="nu12">0x3f</span>, <span class="nu12">0x99</span>, <span class="nu12">0x9b</span>, <span class="nu12">0x86</span>, <span class="nu12">0x43</span>, <span class="nu12">0xf6</span>, <span class="nu12">0x56</span>, <span class="nu12">0xb4</span>, <span class="nu12">0x12</span>, <span class="nu12">0xa3</span><span class="br0">&#125;</span><span class="sy4">;</span>
+    <span class="co1">// Leave out last byte since that's the hash_type_code (SIGHASH_ALL in this</span>
+    <span class="co1">// case)</span>
+    data_chunk signature<span class="br0">&#123;</span><span class="nu12">0x30</span>, <span class="nu12">0x44</span>, <span class="nu12">0x02</span>, <span class="nu12">0x20</span>, <span class="nu12">0x4e</span>, <span class="nu12">0x45</span>, <span class="nu12">0xe1</span>, <span class="nu12">0x69</span>, <span class="nu12">0x32</span>, <span class="nu12">0xb8</span>, <span class="nu12">0xaf</span>, <span class="nu12">0x51</span>, <span class="nu12">0x49</span>, <span class="nu12">0x61</span>, <span class="nu12">0xa1</span>, <span class="nu12">0xd3</span>, <span class="nu12">0xa1</span>, <span class="nu12">0xa2</span>, <span class="nu12">0x5f</span>, <span class="nu12">0xdf</span>, <span class="nu12">0x3f</span>, <span class="nu12">0x4f</span>, <span class="nu12">0x77</span>, <span class="nu12">0x32</span>, <span class="nu12">0xe9</span>, <span class="nu12">0xd6</span>, <span class="nu12">0x24</span>, <span class="nu12">0xc6</span>, <span class="nu12">0xc6</span>, <span class="nu12">0x15</span>, <span class="nu12">0x48</span>, <span class="nu12">0xab</span>, <span class="nu12">0x5f</span>, <span class="nu12">0xb8</span>, <span class="nu12">0xcd</span>, <span class="nu12">0x41</span>, <span class="nu12">0x02</span>, <span class="nu12">0x20</span>, <span class="nu12">0x18</span>, <span class="nu12">0x15</span>, <span class="nu12">0x22</span>, <span class="nu12">0xec</span>, <span class="nu12">0x8e</span>, <span class="nu12">0xca</span>, <span class="nu12">0x07</span>, <span class="nu12">0xde</span>, <span class="nu12">0x48</span>, <span class="nu12">0x60</span>, <span class="nu12">0xa4</span>, <span class="nu12">0xac</span>, <span class="nu12">0xdd</span>, <span class="nu12">0x12</span>, <span class="nu12">0x90</span>, <span class="nu12">0x9d</span>, <span class="nu12">0x83</span>, <span class="nu12">0x1c</span>, <span class="nu12">0xc5</span>, <span class="nu12">0x6c</span>, <span class="nu12">0xbb</span>, <span class="nu12">0xac</span>, <span class="nu12">0x46</span>, <span class="nu12">0x22</span>, <span class="nu12">0x08</span>, <span class="nu12">0x22</span>, <span class="nu12">0x21</span>, <span class="nu12">0xa8</span>, <span class="nu12">0x76</span>, <span class="nu12">0x8d</span>, <span class="nu12">0x1d</span>, <span class="nu12">0x09</span><span class="br0">&#125;</span><span class="sy4">;</span>
+    BITCOIN_ASSERT<span class="br0">&#40;</span>signature.<span class="me1">size</span><span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy1">==</span> <span class="nu0">70</span><span class="br0">&#41;</span><span class="sy4">;</span>
+&#160;
+    elliptic_curve_key key<span class="sy4">;</span>
+    <span class="kw1">if</span> <span class="br0">&#40;</span><span class="sy3">!</span>key.<span class="me1">set_public_key</span><span class="br0">&#40;</span>pubkey<span class="br0">&#41;</span><span class="br0">&#41;</span>
+    <span class="br0">&#123;</span>
+        log_fatal<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy1">&lt;&lt;</span> <span class="st0">&quot;unable to set EC public key&quot;</span><span class="sy4">;</span>
+        <span class="kw1">return</span> <span class="sy2">-</span><span class="nu0">1</span><span class="sy4">;</span>
+    <span class="br0">&#125;</span>
+&#160;
+    log_info<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy1">&lt;&lt;</span> <span class="st0">&quot;checksig returns: &quot;</span> <span class="sy1">&lt;&lt;</span> <span class="br0">&#40;</span>key.<span class="me1">verify</span><span class="br0">&#40;</span>tx_hash, signature<span class="br0">&#41;</span> <span class="sy4">?</span> <span class="st0">&quot;true&quot;</span> <span class="sy4">:</span> <span class="st0">&quot;false&quot;</span><span class="br0">&#41;</span><span class="sy4">;</span>
+    <span class="kw1">return</span> <span class="nu0">0</span><span class="sy4">;</span>
+<span class="br0">&#125;</span></pre></div></pre>
+<h2><span class="mw-headline" id="References">References</span></h2>
+<ol class="references"><li id="cite_note-0"><span class="mw-cite-backlink"><a href="#cite_ref-0">↑</a></span> <span class="reference-text"><a rel="nofollow" class="external text" href="http://sourceforge.net/projects/bitcoin/files/Bitcoin/bitcoin-0.7.1/bitcoin-0.7.1-linux.tar.gz">file src/src/script.cpp in bitcoin-0.7.1</a></span>
+</li></ol>
+ 
+ 
+</div> <div class="printfooter">
+Retrieved from "<a href="https://en.bitcoin.it/w/index.php?title=OP_CHECKSIG&amp;oldid=49206">https://en.bitcoin.it/w/index.php?title=OP_CHECKSIG&amp;oldid=49206</a>" </div>
+<div id='catlinks' class='catlinks'><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/wiki/Special:Categories" title="Special:Categories">Categories</a>: <ul><li><a href="/wiki/Category:Technical" title="Category:Technical">Technical</a></li><li><a href="/wiki/Category:Developer" title="Category:Developer">Developer</a></li></ul></div></div> <div class="visualClear"></div>
+</div>
+</div>
+<div id="mw-navigation">
+<h2>Navigation menu</h2>
+<div id="mw-head">
+<div id="p-personal" role="navigation" class="" aria-labelledby="p-personal-label">
+<h3 id="p-personal-label">Personal tools</h3>
+<ul>
+<li id="pt-createaccount"><a href="/w/index.php?title=Special:UserLogin&amp;returnto=OP+CHECKSIG&amp;type=signup">Create account</a></li><li id="pt-login"><a href="/w/index.php?title=Special:UserLogin&amp;returnto=OP+CHECKSIG" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li> </ul>
+</div>
+<div id="left-navigation">
+<div id="p-namespaces" role="navigation" class="vectorTabs" aria-labelledby="p-namespaces-label">
+<h3 id="p-namespaces-label">Namespaces</h3>
+<ul>
+<li id="ca-nstab-main" class="selected"><span><a href="/wiki/OP_CHECKSIG" title="View the content page [c]" accesskey="c">Page</a></span></li>
+<li id="ca-talk"><span><a href="/wiki/Talk:OP_CHECKSIG" title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+</ul>
+</div>
+<div id="p-variants" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-variants-label">
+<h3 id="mw-vector-current-variant">
+</h3>
+<h3 id="p-variants-label"><span>Variants</span><a href="#"></a></h3>
+<div class="menu">
+<ul>
+</ul>
+</div>
+</div>
+</div>
+<div id="right-navigation">
+<div id="p-views" role="navigation" class="vectorTabs" aria-labelledby="p-views-label">
+<h3 id="p-views-label">Views</h3>
+<ul>
+<li id="ca-view" class="selected"><span><a href="/wiki/OP_CHECKSIG">Read</a></span></li>
+<li id="ca-viewsource"><span><a href="/w/index.php?title=OP_CHECKSIG&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+<li id="ca-history" class="collapsible"><span><a href="/w/index.php?title=OP_CHECKSIG&amp;action=history" title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+</ul>
+</div>
+<div id="p-cactions" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-cactions-label">
+<h3 id="p-cactions-label"><span>Actions</span><a href="#"></a></h3>
+<div class="menu">
+<ul>
+</ul>
+</div>
+</div>
+<div id="p-search" role="search">
+<h3><label for="searchInput">Search</label></h3>
+<form action="/w/index.php" id="searchform">
+<div id="simpleSearch">
+<input type="search" name="search" placeholder="Search" title="Search Bitcoin [f]" accesskey="f" id="searchInput"/><input type="hidden" value="Special:Search" name="title"/><input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton mw-fallbackSearchButton"/><input type="submit" name="go" value="Go" title="Go to a page with this exact name if exists" id="searchButton" class="searchButton"/> </div>
+</form>
+</div>
+</div>
+</div>
+<div id="mw-panel">
+<div id="p-logo" role="banner"><a style="background-image: url(/img/bc_logo_135.png);" href="/wiki/Main_Page" title="Visit the main page"></a></div>
+<div class="portal" role="navigation" id='p-navigation' aria-labelledby='p-navigation-label'>
+<h3 id='p-navigation-label'>Navigation</h3>
+<div class="body">
+<ul>
+<li id="n-mainpage-description"><a href="/wiki/Main_Page" title="Visit the main page [z]" accesskey="z">Main page</a></li>
+<li id="n-FAQ"><a href="/wiki/FAQ">FAQ</a></li>
+<li id="n-Help"><a href="/wiki/Help:Contents">Help</a></li>
+<li id="n-Forums"><a href="/wiki/Forums">Forums</a></li>
+<li id="n-Chatrooms"><a href="/wiki/IRC_channels">Chatrooms</a></li>
+<li id="n-portal"><a href="/wiki/Bitcoin:Community_portal" title="About the project, what you can do, where to find things">Community portal</a></li>
+<li id="n-Recent-changes"><a href="/wiki/Special:RecentChanges">Recent changes</a></li>
+</ul>
+</div>
+</div>
+<div class="portal" role="navigation" id='p-tb' aria-labelledby='p-tb-label'>
+<h3 id='p-tb-label'>Tools</h3>
+<div class="body">
+<ul>
+<li id="t-whatlinkshere"><a href="/wiki/Special:WhatLinksHere/OP_CHECKSIG" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+<li id="t-recentchangeslinked"><a href="/wiki/Special:RecentChangesLinked/OP_CHECKSIG" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+<li id="t-specialpages"><a href="/wiki/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+<li id="t-print"><a href="/w/index.php?title=OP_CHECKSIG&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+<li id="t-permalink"><a href="/w/index.php?title=OP_CHECKSIG&amp;oldid=49206" title="Permanent link to this revision of the page">Permanent link</a></li>
+<li id="t-info"><a href="/w/index.php?title=OP_CHECKSIG&amp;action=info">Page information</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="footer" role="contentinfo">
+<ul id="footer-info">
+<li id="footer-info-lastmod"> This page was last modified on 29 July 2014, at 21:50.</li>
+<li id="footer-info-copyright">Content is available under <a class="external" rel="nofollow" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0</a> unless otherwise noted.</li>
+</ul>
+<ul id="footer-places">
+<li id="footer-places-privacy"><a href="/wiki/Bitcoin:Privacy_policy" title="Bitcoin:Privacy policy">Privacy policy</a></li>
+<li id="footer-places-about"><a href="/wiki/Bitcoin:About" title="Bitcoin:About">About Bitcoin</a></li>
+<li id="footer-places-disclaimer"><a href="/wiki/Bitcoin:General_disclaimer" title="Bitcoin:General disclaimer">Disclaimers</a></li>
+</ul>
+<ul id="footer-icons" class="noprint">
+<li id="footer-poweredbyico">
+<a href="//www.mediawiki.org/"><img src="/w/skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" width="88" height="31"/></a>
+</li>
+</ul>
+<div style="clear:both"></div>
+</div>
+<script>/*<![CDATA[*/window.jQuery && jQuery.ready();/*]]>*/</script><script>if(window.mw){
+mw.loader.state({"site":"loading","user":"ready","user.groups":"ready"});
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.action.view.postEdit","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest","ext.vector.collapsibleNav","ext.vector.collapsibleTabs","ext.vector.editWarning","ext.vector.simpleSearch","skins.vector.collapsibleNav"],null,true);
+}</script>
+<script src="https://en.bitcoin.it/w/load.php?debug=false&amp;lang=en&amp;modules=site&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-50376256-1");
+pageTracker._trackPageview();
+</script><script>if(window.mw){
+mw.config.set({"wgBackendResponseTime":195});
+}</script>
+</body>
+</html>
